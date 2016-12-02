@@ -52,7 +52,7 @@ def upload_to_pastebin(input_text, data_format,
     """
     url = "http://pastebin.com/api/api_post.php"
     login_url = "http://pastebin.com/api/api_login.php"
-    dev_key = ""
+    dev_key = ""    #enter your dev_key 
 
     if user_name != '' and password != '':  # generating user key
         login_payload = {"api_dev_key": dev_key,
