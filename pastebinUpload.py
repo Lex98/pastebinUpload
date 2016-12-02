@@ -14,19 +14,19 @@ def parse_argv():
     parser = argparse.ArgumentParser(description="Upload file to pastebin")
     parser.add_argument("input_file", type=str,
                         help="file to upload")
-    parser.add_argument("paste_format", type=str, nargs='?',
+    parser.add_argument("-f", "--format", type=str, nargs='?',
                         help="format of input text file to syntax highlights. default = python",
                         default="python")
-    parser.add_argument("user_name", type=str, nargs='?',
+    parser.add_argument("-u", "--user_name", type=str, nargs='?',
                         help="user name", default="")
-    parser.add_argument("password", type=str, nargs='?',
+    parser.add_argument("-p", "--password", type=str, nargs='?',
                         help="password", default="")
-    parser.add_argument("paste_name", type=str, nargs='?',
+    parser.add_argument("-n", "--name", type=str, nargs='?',
                         help="name or title of your paste", default="")
-    parser.add_argument("paste_private", type=int, nargs='?',
+    parser.add_argument("-pr", "--private", type=int, nargs='?',
                         help="private of data. 0 = public 1 = unlisted 2 = private",
                         default="0")
-    parser.add_argument("paste_expire_date", type=str, nargs='?',
+    parser.add_argument("-ed", "--expire_date", type=str, nargs='?',
                         help="expire date. N=Never, 10M=10 Minutes, 1H=1 Hour, 1D=1 Day, 1W=1 Week, 2W=2 Weeks, 1M=1 Month",
                         default="1D")
     args = parser.parse_args()
@@ -54,7 +54,7 @@ def upload_to_pastebin(input_text, data_format,
     login_url = "http://pastebin.com/api/api_login.php"
     dev_key = ""
 
-    if user_name == '' and password == '':  # generating user key
+    if user_name != '' and password != '':  # generating user key
         login_payload = {"api_dev_key": dev_key,
                          "api_user_name": user_name,
                          "api_user_password": password
@@ -81,9 +81,9 @@ def main():
     """main function"""
     args = parse_argv()
     input_text = reading_text(args.input_file)
-    upload_to_pastebin(input_text, args.paste_format, args.user_name,
-                       args.password, args.paste_name, args.paste_private,
-                       args.paste_expire_date)
+    upload_to_pastebin(input_text, args.format, args.user_name,
+                       args.password, args.name, args.private,
+                       args.expire_date)
 
 
 if __name__ == "__main__":
