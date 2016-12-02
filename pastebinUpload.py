@@ -15,7 +15,7 @@ def parse_argv():
     parser.add_argument("input_file", type=str,
                         help="file to upload")
     parser.add_argument("-f", "--format", type=str, nargs='?',
-                        help="format of input text file to syntax highlights. default = python",
+                        help="format of input text file to syntax highlight. default = python",
                         default="python")
     parser.add_argument("-u", "--user_name", type=str, nargs='?',
                         help="user name", default="")
